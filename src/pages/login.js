@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {StackNavigator} from 'react-navigation';
-import { Dimensions } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import {
   AppRegistry,
   Platform,
@@ -12,6 +12,7 @@ import {
   KeyboardAvoidingView,
   TouchableOpacity,
   AsyncStorage,
+  Dimensions,  
 } from 'react-native';
 
 import Form from '../components/forms';
@@ -44,30 +45,41 @@ export default class Login extends React.Component{
     } 
     render(){
         return(
-            <KeyboardAvoidingView >
-            <View style={styles.container}>
+            <KeyboardAvoidingView style={styles.container}>
                 <Logo/>
                 <View style={styles.container}>
                     <Text  style={styles.title}>HandoverApp</Text>
-                    <Text  style={styles.pequeno}>O seu app de passagem {"\n"}de plantão </Text>
-                    <TextInput style={styles.boxInput}
-                    placeholder="E-mail"
-                    underlineColorAndroid='#4FBFA4'
-                    onChangeText={(username)=>this.setState({username})}/>
+                    <Text  style={styles.pequeno}>O seu app de passagem {"\n"}de plantão</Text>
 
-                    <TextInput style={styles.boxInput}
-                    placeholder="Senha"
-                    underlineColorAndroid='#4FBFA4'
-                    secureTextEntry={true}
-                    ref={(input) => this.password = input}
-                    onChangeText={(password)=>this.setState({password})}/>
-
+                    <View style={styles.inputbar}>
+                        <View style={{marginVertical: 12, height: 40, width: 20, alignItems: 'flex-end', justifyContent: 'center'}}>
+                            <Icon name="envelope" size={16} color="#4FBFA4" />
+                        </View>
+                        <TextInput style={styles.boxInput}
+                            placeholder="E-mail"
+                            autoCapitalize = 'none'
+                            underlineColorAndroid='#4FBFA4'
+                            onChangeText={(username)=>this.setState({username})}
+                        />
+                    </View>
+                    <View style={styles.inputbar}>
+                        <View style={{marginVertical: 12, height: 40, width:20, alignItems: 'flex-end', justifyContent: 'center'}}>
+                            <Icon name="lock" size={22} color="#4FBFA4" />
+                        </View>
+                        <TextInput style={styles.boxInput}
+                            autoCapitalize = 'none'
+                            placeholder="Senha"
+                            underlineColorAndroid='#4FBFA4'
+                            secureTextEntry={true}
+                            ref={(input) => this.password = input}
+                            onChangeText={(password)=>this.setState({password})}
+                        />
+                    </View>
                     <Text  style={styles.forgotPass}>Esqueci a senha</Text>
-                    <TouchableOpacity style={styles.button} onPress={this.login}>
-                        <Text style={styles.buttonText}>ENTRAR</Text>
-                    </TouchableOpacity>   
                 </View>
-            </View>
+                <TouchableOpacity style={styles.button} onPress={this.login}>
+                    <Text style={styles.buttonText}>ENTRAR</Text>
+                </TouchableOpacity> 
             </KeyboardAvoidingView>
         )
     }
@@ -88,7 +100,6 @@ const styles = StyleSheet.create({
     },
     container: {
         flexGrow: 1,
-        justifyContent:'flex-end',
         alignItems: 'center',
         backgroundColor: 'white',
       },
@@ -114,19 +125,25 @@ const styles = StyleSheet.create({
         fontSize: 13,
         alignItems: 'center',
         color: '#4FBFA4', 
-        lineHeight: 100,
+        lineHeight: 80,
     },
     boxInput:{
         width: 300,
         fontSize: 16,
         marginVertical: 12,
+        color: '#000',
+        width: 250,
+        height: 40,
+        paddingTop: 5,
+        paddingLeft: 10,
+        paddingBottom: 5,
+        paddingRight: 5,
     },
     button: {
-        width:300,
         backgroundColor:'#4FBFA4',
-        justifyContent: 'flex-end',
-        paddingVertical: 30,
+        paddingVertical: 25,
         width: imageWidth,
+        justifyContent: 'center',
     },
     buttonText: {
         fontFamily: 'Arial',
@@ -136,5 +153,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         textAlign: 'center',
         fontWeight: 'bold',
-    }
+    },
+    inputbar: {
+        //flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginHorizontal:0,
+    },
   });

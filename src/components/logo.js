@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 const dimensions = Dimensions.get('window');
-const imageHeight = Math.round(dimensions.width * 12 / 16);
+const imageHeight = Math.round(dimensions.width * 14 / 16);
 const imageWidth = dimensions.width;
 
 export default class Logo extends Component{
@@ -20,7 +20,7 @@ export default class Logo extends Component{
                     height: imageHeight, width: imageWidth,justifyContent: 'flex-start',
                     alignItems: 'center',
                 }}
-                source={require('../../src/images/imagemPlantao.jpeg')}
+                source={require('../../src/images/imagemPlantao.png')}
                 />  
   			</View>
 			)
