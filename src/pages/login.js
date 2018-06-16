@@ -47,36 +47,7 @@ export default class Login extends React.Component{
         return(
             <KeyboardAvoidingView style={styles.container}>
                 <Logo/>
-                <View style={styles.container}>
-                    <Text  style={styles.title}>HandoverApp</Text>
-                    <Text  style={styles.pequeno}>O seu app de passagem {"\n"}de plantão</Text>
-
-                    <View style={styles.inputbar}>
-                        <View style={{marginVertical: 12, height: 40, width: 20, alignItems: 'flex-end', justifyContent: 'center'}}>
-                            <Icon name="envelope" size={16} color="#4FBFA4" />
-                        </View>
-                        <TextInput style={styles.boxInput}
-                            placeholder="E-mail"
-                            autoCapitalize = 'none'
-                            underlineColorAndroid='#4FBFA4'
-                            onChangeText={(username)=>this.setState({username})}
-                        />
-                    </View>
-                    <View style={styles.inputbar}>
-                        <View style={{marginVertical: 12, height: 40, width:20, alignItems: 'flex-end', justifyContent: 'center'}}>
-                            <Icon name="lock" size={22} color="#4FBFA4" />
-                        </View>
-                        <TextInput style={styles.boxInput}
-                            autoCapitalize = 'none'
-                            placeholder="Senha"
-                            underlineColorAndroid='#4FBFA4'
-                            secureTextEntry={true}
-                            ref={(input) => this.password = input}
-                            onChangeText={(password)=>this.setState({password})}
-                        />
-                    </View>
-                    <Text  style={styles.forgotPass}>Esqueci a senha</Text>
-                </View>
+                <Form/>
                 <TouchableOpacity style={styles.button} onPress={this.login}>
                     <Text style={styles.buttonText}>ENTRAR</Text>
                 </TouchableOpacity> 
