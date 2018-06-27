@@ -16,7 +16,14 @@ const dimensions = Dimensions.get('window');
 const imageHeight = Math.round(dimensions.width * 9 / 16);
 const imageWidth = dimensions.width;
 
-export default class App extends Component {
+export default class Form extends Component {
+    constructor(props){
+        super(props);
+        this.state ={
+            username: '',
+            password: '',
+        }
+    }
     render() {
       return (
         <View style={styles.container}>

@@ -1,25 +1,23 @@
-import React from "react";
+import React, { Component } from "react";
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {Button,Header, Left, Right,Body,Title} from "native-base";
+import { Header, Body, Title, Content, Left, Right } from 'native-base'
 
-export const HeaderComponent = ()=>{
+
+class HeaderComponent extends Component{
+    render(){
     return(
         <Header style={{backgroundColor: "#4FBFA4"}}>
             <Left>
-                <Button transparent>
-                    <Icon name="bars" size={20} color="white"/>
-                </Button>
+                <Icon name="bars" size={20} color="white"  onPress={() => this.props.drawerOpen()}/>
             </Left>
             <Body>
                 <Title>Dr. Lucas</Title>
             </Body>
             <Right>
-                <Button transparent>
-                    <Icon name="search" size={20} color="white"/>
-                </Button>
+                <Icon name="search" size={20} color="white"/>
             </Right>
         </Header>
-    );
+    );}
 }
 
 export default HeaderComponent;

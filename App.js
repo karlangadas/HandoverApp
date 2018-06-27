@@ -15,11 +15,11 @@ import {
   StatusBar,
 } from 'react-native';
 import Login from './src/pages/login';
-import Home from './src/pages/home';
+import Draw from './src/pages/Draw';
 
 const Application = StackNavigator({
   Login: {screen:Login},
-  Home: {screen:Home},
+  Draw: {screen:Draw},
   },{
       navigationOptions:{
         header: null,

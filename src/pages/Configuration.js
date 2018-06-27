@@ -7,28 +7,36 @@ import {
   View,
   Image,
   TextInput,
-  StatusBar,  
+  StatusBar,
+  ToolbarAndroid,  
 } from 'react-native';
 
-export default class Home extends Component{
-    render(){
-        return(
-            <View style={styles.container}>
-                <StatusBar
-                    translucent
-                    backgroundColor="rgba(0, 0, 0, 0.20)"
-                    animated
-                />
-                <Text>Configuración</Text>
-            </View>
-        )
-    }
+import { Button, Container, Header, Content, Left } from 'native-base'
+import Icon from 'react-native-vector-icons/FontAwesome';
+import HeaderComponent from '../components/HeaderComponent/index';
+
+class Configuration extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    headerLeft: <Icon name="bars" size={20} color="white" style={{ paddingLeft: 10 }} onPress={() => navigation.navigate('DrawerOpen')} />,
+  })
+  render() {
+    return (
+      <Container>
+        <HeaderComponent drawerOpen={() => this.props.navigation.navigate('DrawerOpen')} />
+        <Content
+          contentContainerStyle={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 10 }}>
+          <Text>Configuracoes</Text>
+        </Content>
+      </Container>
+    )
+  }
 }
+
+export default Configuration;
+
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor:'white'
-    },
-  });
+  icon: {
+    width: 24,
+    height: 24,
+  },
+});

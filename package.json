@@ -7,9 +7,20 @@
     "test": "jest"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "bookshelf": "^0.13.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "knex": "^0.13.0",
+    "morgan": "^1.9.0",
     "native-base": "^2.5.2",
+    "pg": "^7.4.3",
     "react": "16.3.1",
     "react-native": "0.55.4",
+    "react-native-axios": "^0.17.1",
+    "react-native-lazyload": "^1.1.0",
+    "react-native-table-component": "^1.1.8",
     "react-native-vector-icons": "^4.6.0",
     "react-navigation": "^2.3.1"
   },
@@ -20,7 +31,8 @@
     "react-test-renderer": "16.3.1"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "testEnvironment": "node"
   },
   "rnpm": {
     "assets": [

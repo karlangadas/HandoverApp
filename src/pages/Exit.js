@@ -11,20 +11,32 @@ import {
   ToolbarAndroid,  
 } from 'react-native';
 
-export default class Exit extends Component{
-    render(){
-        return(
-            <View style={styles.container}>
-                <Text>Exit</Text>
-            </View>
-        )
-    }
+import { Button, Container, Header, Content, Left } from 'native-base'
+import Icon from 'react-native-vector-icons/FontAwesome';
+import HeaderComponent from '../components/HeaderComponent/index';
+
+class Exit extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    headerLeft: <Icon name="bars" size={20} color="white" style={{ paddingLeft: 10 }} onPress={() => navigation.navigate('DrawerOpen')} />,
+  })
+  render() {
+    return (
+      <Container>
+        <HeaderComponent drawerOpen={() => this.props.navigation.navigate('DrawerOpen')} />
+        <Content
+          contentContainerStyle={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 10 }}>
+          <Text>Exit</Text>
+        </Content>
+      </Container>
+    )
+  }
 }
+
+export default Exit;
+
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor:'white'
-    },
-  });
+  icon: {
+    width: 24,
+    height: 24,
+  },
+});

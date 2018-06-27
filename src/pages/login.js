@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {StackNavigator} from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import axios from 'axios';
 import {
   AppRegistry,
   Platform,
@@ -17,7 +18,6 @@ import {
 
 import Form from '../components/forms';
 import Logo from '../components/logo';
-
 
 const dimensions = Dimensions.get('window');
 const imageHeight = Math.round(dimensions.width * 9 / 16);
@@ -40,12 +40,12 @@ export default class Login extends React.Component{
     _loadInitialState = async () => {
         var value = await AsyncStorage.getItem('user');
         if(value!==null){
-            this.props.navigation.navigate('Home');
+            this.props.navigation.navigate('Draw');
         }
     } 
     render(){
         return(
-            <KeyboardAvoidingView style={styles.container}>
+            <KeyboardAvoidingView behavior="position" style={styles.container}>
                 <Logo/>
                 <Form/>
                 <TouchableOpacity style={styles.button} onPress={this.login}>
@@ -56,8 +56,14 @@ export default class Login extends React.Component{
     }
 
     login = () => {
-        AsyncStorage.setItem('user',this.username);
-        this.props.navigation.navigate('Home');
+        axios.get('https://handover-app.herokuapp.com/doctores/karla.pedraza/12345')
+            .then(function (response) {
+                AsyncStorage.setItem('user', 'karla pedraza');
+            })
+            .catch(function (error) {
+                alert(error);
+        });
+        this.props.navigation.navigate('Draw');
     }
 }
 
