@@ -4,8 +4,9 @@ import {
     Platform,
     StyleSheet,
     View,
+    TouchableOpacity,
 } from 'react-native';
-
+import Voice from 'react-native-voice';
 import { Table, TableWrapper, Row, Rows, Col } from 'react-native-table-component';
 import { Body, Thumbnail, List, Button, Container, Header, Content, Left, ListItem, Text, Separator } from 'native-base'
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -16,8 +17,15 @@ class Detalle extends Component {
         this.state = {
             data: [],
             tableData: [],
-            tableTitles: ['HDAP', 'EXA', 'MED', 'PEN'],
+            tableTitles: ['HDAP', 'EXA', 'MED', 'PEN'],  
+            results: [],        
         }
+        Voice.onSpeechResults = this.onSpeechResults.bind(this);
+    }
+    onSpeechResults(e){
+        this.setState({
+            results:e.value,
+        })
     }
     getFeaturedPaciente(thumbnail_json) {
         return fetch("https://handover-app.herokuapp.com/admisionPaciente/"+thumbnail_json)
@@ -35,6 +43,12 @@ class Detalle extends Component {
     static navigationOptions = ({ navigation }) => ({
         headerLeft: <Icon name="bars" size={20} color="white" style={{ paddingLeft: 10 }} onPress={() => navigation.navigate('DrawerOpen')} />,
     })
+    onSpeechStart(){
+        Voice.start('en_US');
+    }
+    onSpeechEnd(){
+        Voice.stop();
+    }
     render() {
         const { navigation } = this.props;
         const id_admision = navigation.getParam('itemId', 'NO-ID');
@@ -69,6 +83,19 @@ class Detalle extends Component {
                     <View style={{ paddingVertical: 10 }}>
                     </View>
                 </Content>
+                <View>
+                <TouchableOpacity onPress={this.onSpeechStart.bind()}>
+                    <Text>Fuck you .l.</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={this.onSpeechEnd.bind()}> 
+                    <Text> Yep .l.</Text>
+                </TouchableOpacity>
+                {this.state.results.map( (text, index) => {
+                    return(
+                        <Text key={index}>{text}</Text>
+                    )
+                })}
+                </View>
             </Container>
         )
     }
@@ -77,6 +104,11 @@ class Detalle extends Component {
 export default Detalle;
 
 const styles = StyleSheet.create({
+    view:{
+        height: 150,
+        backgroundColor: 'green',
+        width: 100,
+    },
     contenido: {
         flex: 1,
         backgroundColor: "white",
